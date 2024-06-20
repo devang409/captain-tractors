@@ -1,0 +1,86 @@
+<div class="pagetitle">
+    <h1>Catalogue & Ordering</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Catalogue & Ordering</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div>
+            <h5 class="card-title">Search</h5>
+            <form #serchForm="ngForm">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="name" class="form-label">User Name<sup class="text-danger">*</sup>:</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="serchObj.name" name="name">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="order_number" class="form-label">Order Number<sup
+                                class="text-danger">*</sup>:</label>
+                        <input type="text" class="form-control" id="order_number" [(ngModel)]="serchObj.order_number"
+                            name="order_number">
+                    </div>
+                    <div class="serch-box col-md-6">
+                        <button type="button" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title">Results (1)</h5>
+            <div class="add-box">
+                <button type="button" class="btn btn-primary" routerLink="/add-catalogue">
+                    Add
+                    <i class="bi bi-plus-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Table with hoverable rows -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Description </th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of orderList;let i = index">
+                        <th scope="row">{{i +1}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.description}}</td>
+                        <td>
+                            <span *ngIf="item.is_active" class="badge bg-success">Active</span>
+                            <span *ngIf="!item.is_active" class="badge bg-danger">Deactivate</span>
+                        </td>
+                        <td>
+                            <div class="action-box">
+                                <button type="button" class="btn btn-success">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Table with hoverable rows -->
+
+    </div>
+</div>
