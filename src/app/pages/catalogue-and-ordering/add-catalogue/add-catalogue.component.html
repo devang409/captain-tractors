@@ -26,21 +26,8 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputEmail3" class="col-md-4 form-label">Product Model : </label>
+                        <label for="inputEmail3" class="col-md-4 form-label">Assembly : </label>
                         <div class="col-md-8">
-                            <select id="roles" class="form-select" [(ngModel)]="formObj.model_id" name="roles" required
-                                #rolesCtrl="ngModel">
-                                <ng-container *ngFor="let item of modaldataList">
-                                    <option [value]="item.id">{{item.name}}</option>
-                                </ng-container>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row mb-3">
-                        <label for="inputEmail3" class="col-md-3 form-label">Assembly : </label>
-                        <div class="col-md-9">
                             <select id="roles" class="form-select" [(ngModel)]="formObj.assembly_id" name="roles"
                                 required #rolesCtrl="ngModel">
                                 <ng-container *ngFor="let item of assemblyList">
@@ -49,9 +36,22 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-md-3 form-label">Product Model : </label>
+                        <div class="col-md-9">
+                            <select id="roles" class="form-select" [(ngModel)]="formObj.model_id" name="roles" required
+                                #rolesCtrl="ngModel">
+                                <ng-container *ngFor="let item of modaldataList">
+                                    <option [value]="item.id">{{item.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
                     <div class="serch-box">
-                        <button type="button" class="btn btn-secondary">Reset</button>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn btn-secondary" (click)="getCatalogue('Reset')">Reset</button>
+                        <button type="submit" class="btn btn-primary" (click)="getCatalogue('Search')">Search</button>
                     </div>
                 </div>
             </div>
@@ -61,18 +61,18 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="row">
+        <div class="row" *ngIf="partList && partList.length">
             <div class="col-md-5">
-                <h2 class="img-title">4WD Assembly</h2>
-                <img class="img-box" src="../../../../assets/img/assembly.png" alt="" srcset="">
+                <h2 class="img-title">{{partList[0].assembly.name}}</h2>
+                <img class="img-box" [src]="partList[0].assembly.image" alt="" srcset="">
             </div>
             <div class="col-md-7">
                 <div class="table-hed">
                     <div>
-                        Total Selected Line Item : 0
+                        Total Selected Line Item : {{lineCount}}
                     </div>
                     <div>
-                        <a href="#">Move All Item to Cart</a>
+                        <a (click)="moveTocart()" class="move-to-cart">Move All Item to Cart</a>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -96,7 +96,7 @@
                                 </th>
                                 <th scope="col" rowspan="2">
                                     <div class="table-agliment">
-                                        Item Selected 0
+                                        Item Selected {{totalQty}}  
                                     </div>
                                 </th>
                                 <th scope="col" class="text-center">Qty</th>
@@ -114,30 +114,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                            <tr *ngFor="let item of partList;let i = index">
+                                <th scope="row">{{item.sno}}</th>
+                                <td>{{item.part_no}}</td>
+                                <td>{{item.description}}</td>
                                 <td>
                                     <div class="qty-box">
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" (click)="decrement(i)">
                                             <i class="bi bi-dash-circle"></i>
                                         </button>
-                                        <input type="number" class="form-control" id="qty" name="qty">
-                                        <button type="button" class="btn btn-danger">
+                                        <input type="number" [(ngModel)]="item.qty" class="form-control" id="qty"
+                                            name="qty" disabled>
+                                        <button type="button" class="btn btn-danger" (click)="increment(i)">
                                             <i class="bi bi-plus-circle"></i>
                                         </button>
                                     </div>
 
                                 </td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <td> </td>
+                                <td> </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
             </div>
+        </div>
+        <div *ngIf="!partList.length" class="text-center">
+            Search To Part's Show
         </div>
     </div>
 </div>

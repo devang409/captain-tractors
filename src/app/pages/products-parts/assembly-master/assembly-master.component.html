@@ -114,7 +114,7 @@
                             <input type="text" class="form-control" id="name" [(ngModel)]="formObj.name" name="name"
                                 required #nameCtrl="ngModel">
                             <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || form.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Name is required.
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                 </ng-container>
                             </select>
                             <div *ngIf="model_idCtrl.invalid && (model_idCtrl.dirty || model_idCtrl.touched || form.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Modal is required.
                             </div>
                         </div>

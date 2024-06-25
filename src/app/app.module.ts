@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AddCatalogueComponent } from './pages/catalogue-and-ordering/add-catalogue/add-catalogue.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/add-to-cart.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ForgetPasswordComponent,
     DealerAssignModelComponent,
     SearchPipe,
-    AddCatalogueComponent
+    AddCatalogueComponent,
+    AddToCartComponent
   ],
   imports: [
     BrowserModule,

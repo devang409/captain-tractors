@@ -16,9 +16,20 @@ export class CatalogueAndOrderingComponent implements OnInit {
     public service: ApiServiceService,
     public comman: CommanService,
     public router: Router
-  ) { }
+  ) { } 
 
   ngOnInit(): void {
 
+  }
+
+
+  getCatalogue() {
+    this.service.e_CatalogueList(this.formObj).subscribe((res: any) => {
+      if (res.success) {
+        this.comman.toster('success', res.message);
+      } else {
+        this.comman.toster('warning', res.message)
+      }
+    })
   }
 }

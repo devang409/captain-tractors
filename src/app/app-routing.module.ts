@@ -14,6 +14,7 @@ import { ForgetPasswordComponent } from './auth/forget-password/forget-password.
 import { AuthGuard } from './auth/auth.guard';
 import { DealerAssignModelComponent } from './pages/dealer-assign-model/dealer-assign-model.component';
 import { AddCatalogueComponent } from './pages/catalogue-and-ordering/add-catalogue/add-catalogue.component';
+import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/add-to-cart.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'catalogue-and-ordering', component: CatalogueAndOrderingComponent },
       { path: 'dealer-assign-model', component: DealerAssignModelComponent },
       { path: 'add-catalogue', component: AddCatalogueComponent },
+      { path: 'add-to-cart', component: AddToCartComponent },
     ],
     canActivate: [AuthGuard]
   },

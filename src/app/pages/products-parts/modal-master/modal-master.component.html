@@ -115,7 +115,7 @@
                                 </ng-container>
                             </select>
                             <div *ngIf="productTypeCtrl.invalid && (productTypeCtrl.dirty || productTypeCtrl.touched || form.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Product Type is required.
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <input type="text" class="form-control" id="name" [(ngModel)]="formObj.name" name="name"
                                 required #nameCtrl="ngModel">
                             <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || form.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Name is required.
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                             <input type="text" class="form-control" id="modal_number" [(ngModel)]="formObj.number"
                                 name="number" required #modal_numberCtrl="ngModel">
                             <div *ngIf="modal_numberCtrl.invalid && (modal_numberCtrl.dirty || modal_numberCtrl.touched || form.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Number is required.
                             </div>
                         </div>

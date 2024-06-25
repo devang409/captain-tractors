@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
+  cartCount: any = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -125,4 +128,27 @@ export class ApiServiceService {
     return this.http.post(environment.apiUrl + 'role/list', data);
   }
   //=====// Role Master End //=====//
+
+
+  //=====// E-Catalogue Start //=====//
+  e_CatalogueList(data: any) {
+    return this.http.post(environment.apiUrl + 'part/list', data);
+  }
+
+  addToCart(data: any) {
+    return this.http.post(environment.apiUrl + 'user_cart_part/store', data);
+  }
+
+  cartList(data: any): Observable<{ items: any[], count: number }> {
+    return this.http.post<any>(environment.apiUrl + 'user_cart_part/user_cart_list', data).pipe(
+      map(response => {
+        this.cartCount = response.data.length;
+        return response;
+      })
+    );
+  }
+
+  deleteCart(id: any) {
+    return this.http.post(environment.apiUrl + `user_cart_part/${id}/delete`, {});
+  }
 }

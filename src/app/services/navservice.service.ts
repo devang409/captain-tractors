@@ -71,6 +71,20 @@ export class NavserviceService {
       icon: 'bi bi-person-lines-fill',
       children: []
     },
+    {
+      path: '',
+      title: 'Reports',
+      type: 'link',
+      icon: 'bi bi-menu-button-wide',
+      children: [
+        {
+          path: '/products-type-master',
+          title: 'Spare Parts Billing Report',
+          type: 'link',
+          icon: 'bi bi-circle',
+        }
+      ]
+    },
   ]
 
   role_Menu = new BehaviorSubject<any[]>(this.ROLEMENU);

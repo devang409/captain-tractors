@@ -95,7 +95,7 @@
                             <input type="text" class="form-control" id="name" [(ngModel)]="formObj.name" name="name"
                                 required #nameCtrl="ngModel">
                             <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || roleForm.submitted)"
-                                class="text-danger">
+                                class="text-danger invalid-feild">
                                 Name is required.
                             </div>
                         </div>

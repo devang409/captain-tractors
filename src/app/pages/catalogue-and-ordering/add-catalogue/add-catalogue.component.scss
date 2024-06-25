@@ -37,11 +37,12 @@
     gap: 10px;
 }
 
-.qty-box input{
+.qty-box input {
     width: 66px;
+    text-align: center;
 }
 
-.qty-box button{
+.qty-box button {
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 4.5px;
@@ -50,9 +51,28 @@
     background-color: red;
 }
 
-.table-agliment{
+.table-agliment {
     display: flex;
     height: 84px;
     align-items: center;
     justify-content: center;
+}
+
+.move-to-cart{
+    text-decoration: underline;
+    color: #4154f1;
+    cursor: pointer;
+}
+
+
+/* Hide number input spinners for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide number input spinners for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
