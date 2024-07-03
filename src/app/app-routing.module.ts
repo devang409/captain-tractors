@@ -15,6 +15,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { DealerAssignModelComponent } from './pages/dealer-assign-model/dealer-assign-model.component';
 import { AddCatalogueComponent } from './pages/catalogue-and-ordering/add-catalogue/add-catalogue.component';
 import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/add-to-cart.component';
+import { PurchaseOrderComponent } from './pages/purchase-order/purchase-order.component';
+import { OrderDetailComponent } from './pages/catalogue-and-ordering/order-detail/order-detail.component';
 
 const routes: Routes = [
   {
@@ -31,12 +33,14 @@ const routes: Routes = [
       { path: 'role-master', component: RoleMasterComponent },
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'products-type-master', component: ProductsTypeMasterComponent },
-      { path: 'modal-master', component: ModalMasterComponent },
+      { path: 'model-master', component: ModalMasterComponent },
       { path: 'assembly-master', component: AssemblyMasterComponent },
       { path: 'catalogue-and-ordering', component: CatalogueAndOrderingComponent },
+      { path: 'order-detail/:id', component: OrderDetailComponent },
       { path: 'dealer-assign-model', component: DealerAssignModelComponent },
       { path: 'add-catalogue', component: AddCatalogueComponent },
       { path: 'add-to-cart', component: AddToCartComponent },
+      { path: 'purchase-order', component: PurchaseOrderComponent },
     ],
     canActivate: [AuthGuard]
   },

@@ -2,6 +2,7 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 @import 'sweetalert2/src/sweetalert2.scss';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -10,7 +11,7 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
   background: #f6f9ff;
   color: #444444;
 }

@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     let obj = {
       user_id: this.userData.id
     }
-    this.getCartList(obj)
+    // this.getCartList(obj)
   }
 
   toggelSideBar() {

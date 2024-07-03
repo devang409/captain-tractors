@@ -11,25 +11,36 @@ import { CommanService } from 'src/app/services/comman.service';
 export class CatalogueAndOrderingComponent implements OnInit {
   formObj: any = {};
   serchObj: any = {};
-  orderList: any;
+  userData: any = JSON.parse(localStorage.getItem('profile') || '');
+  getAllOrder: any = [];
+  p: number = 1;
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
     public router: Router
-  ) { } 
+  ) { }
 
   ngOnInit(): void {
-
+    let obj: any = {}
+    if (this.userData?.role_name == 'Dealer') {
+      obj.dealer_id = this.userData.id;
+    }
+    this.getCatalogue(obj);
   }
 
 
-  getCatalogue() {
-    this.service.e_CatalogueList(this.formObj).subscribe((res: any) => {
+  getCatalogue(obj: any) {
+    this.service.getOrder(obj).subscribe((res: any) => {
       if (res.success) {
-        this.comman.toster('success', res.message);
+        this.getAllOrder = res.data;
       } else {
         this.comman.toster('warning', res.message)
       }
     })
+  }
+
+  selectedRow(item: any) {
+    console.log(item);
+    this.router.navigate(['/order-detail', item.id]);
   }
 }

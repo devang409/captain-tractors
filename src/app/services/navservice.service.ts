@@ -44,8 +44,8 @@ export class NavserviceService {
           icon: 'bi bi-circle',
         },
         {
-          path: '/modal-master',
-          title: 'Modal Master',
+          path: '/model-master',
+          title: 'Model Master',
           type: 'link',
           icon: 'bi bi-circle',
         },
@@ -84,6 +84,13 @@ export class NavserviceService {
           icon: 'bi bi-circle',
         }
       ]
+    },
+    {
+      path: '/purchase-order',
+      title: 'Purchase Order',
+      type: 'link',
+      icon: 'bi bi-grid',
+      children: []
     },
   ]
 

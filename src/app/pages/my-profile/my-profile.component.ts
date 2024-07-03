@@ -12,13 +12,17 @@ export class MyProfileComponent implements OnInit {
   formObj: any = {}
   passwordObj: any = {}
   userData: any;
+  roleList: any;
+  allCountryList: any;
+  allStateList: any;
 
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
     public router: Router
   ) {
-
+    this.getRoleList();
+    this.getCountryList();
   }
 
   ngOnInit(): void {
@@ -29,10 +33,12 @@ export class MyProfileComponent implements OnInit {
       this.formObj.phone = this.userData.phone;
       this.formObj.email = this.userData.email;
       this.formObj.password = this.userData.password;
-      this.formObj.address = this.userData.address;
+      this.formObj.country_id = this.userData.country_id;
+      this.selectCountry();
+      this.formObj.state_id = this.userData.state_id;
       this.formObj.city = this.userData.city;
-      this.formObj.state = this.userData.state;
       this.formObj.role_id = this.userData.role_id;
+      this.formObj.address = this.userData.address;
       // this.formObj.is_active = this.userData.is_active;
     }
   }
@@ -55,5 +61,49 @@ export class MyProfileComponent implements OnInit {
         this.comman.toster('error', 'ops! something went wrong please try again later')
       })
     }
+  }
+
+  getRoleList() {
+    this.service.roleList({}).subscribe((res: any) => {
+      if (res.success) {
+        this.roleList = res.data;
+      }
+    })
+  }
+
+  getCountryList() {
+    this.service.countryList({}).subscribe((res: any) => {
+      if (res.success) {
+        this.allCountryList = res.data;
+      }
+    })
+  }
+
+  selectCountry() {
+    if (this.formObj.country_id) {
+      let obj = {
+        country_id: this.formObj.country_id
+      }
+      this.service.stateList(obj).subscribe((res: any) => {
+        if (res.success) {
+          this.allStateList = res.data;
+        }
+      })
+    } else {
+      this.comman.toster('warning', 'Please select country to get state')
+    }
+  }
+
+  updateProfile() {
+    this.service.editUser(this.formObj, this.userData.id).subscribe((res: any) => {
+      if (res.success) {
+        this.comman.toster('success', res.message);
+      } else {
+        this.comman.toster('warning', res.message)
+      }
+    }, (err: any) => {
+      console.log(err);
+      this.comman.toster('error', 'ops! something went wrong please try again later')
+    })
   }
 }

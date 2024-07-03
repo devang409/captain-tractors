@@ -111,7 +111,7 @@ export class AddCatalogueComponent implements OnInit {
     if (obj.parts && obj.parts.length) {
       this.service.addToCart(obj).subscribe((res: any) => {
         if (res.success) {
-          this.router.navigate(['/add-to-cart'])
+          // this.router.navigate(['/add-to-cart'])
           this.comman.toster('success', res.message);
         } else {
           this.comman.toster('warning', res.message)

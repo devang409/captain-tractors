@@ -76,7 +76,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
-                        <th scope="col">City</th>
+                        <th scope="col">Country</th>
                         <th scope="col">State</th>
                         <th scope="col">Role</th>
                         <th scope="col">Status</th>
@@ -89,8 +89,8 @@
                         <td>{{item.first_name}} {{item.last_name}}</td>
                         <td>{{item.phone}}</td>
                         <td>{{item.email}}</td>
-                        <td>{{item.city}}</td>
-                        <td>{{item.state}}</td>
+                        <td>{{item.country?.name}}</td>
+                        <td>{{item.state?.name}}</td>
                         <td>{{item.role_name}}</td>
                         <td>
                             <span *ngIf="item.is_active" class="badge bg-success">Active</span>
@@ -202,10 +202,11 @@
                         <div class="col-md-6">
                             <label for="inputcountry" class="form-label">Country<sup
                                     class="text-danger">*</sup>:</label>
-                            <select id="inputcountry" class="form-select" [(ngModel)]="formObj.country" name="country"
-                                required #countryCtrl="ngModel">
-                                <option value="country1">country 1</option>
-                                <option value="country2">country 2</option>
+                            <select id="inputcountry" class="form-select" [(ngModel)]="formObj.country_id" name="country_id"
+                                required #countryCtrl="ngModel" (change)="selectCountry()">
+                                <ng-container *ngFor="let item of allCountryList">
+                                    <option [value]="item.id">{{item.name}}</option>
+                                </ng-container>
                             </select>
                             <div *ngIf="countryCtrl.invalid && (countryCtrl.dirty || countryCtrl.touched || form.submitted)"
                                 class="text-danger invalid-feild">
@@ -215,10 +216,11 @@
 
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">State<sup class="text-danger">*</sup>:</label>
-                            <select id="inputState" class="form-select" [(ngModel)]="formObj.state" name="state"
+                            <select id="inputState" class="form-select" [(ngModel)]="formObj.state_id" name="state_id"
                                 required #stateCtrl="ngModel">
-                                <option value="state1">State 1</option>
-                                <option value="state2">State 2</option>
+                                <ng-container *ngFor="let item of allStateList">
+                                    <option [value]="item.id">{{item.name}}</option>
+                                </ng-container>
                             </select>
                             <div *ngIf="stateCtrl.invalid && (stateCtrl.dirty || stateCtrl.touched || form.submitted)"
                                 class="text-danger invalid-feild">

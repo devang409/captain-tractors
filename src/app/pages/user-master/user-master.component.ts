@@ -24,6 +24,8 @@ export class UserMasterComponent implements OnInit {
   userData: any;
   roleList: any;
   p: number = 1;
+  allCountryList: any;
+  allStateList: any;
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
@@ -33,6 +35,7 @@ export class UserMasterComponent implements OnInit {
     this.userData = JSON.parse(localStorage.getItem('profile') || '')
     this.getUerList();
     this.getRoleList();
+    this.getCountryList();
   }
 
   openPop(type: any, item: any) {
@@ -99,8 +102,8 @@ export class UserMasterComponent implements OnInit {
     this.service.userList({}).subscribe((res: any) => {
       if (res.success) {
         let data = [];
-        for(let i in res.data){
-          if(res.data[i].id != this.userData.id){
+        for (let i in res.data) {
+          if (res.data[i].id != this.userData.id) {
             data.push(res.data[i]);
           }
         }
@@ -115,6 +118,29 @@ export class UserMasterComponent implements OnInit {
         this.roleList = res.data;
       }
     })
+  }
+
+  getCountryList() {
+    this.service.countryList({}).subscribe((res: any) => {
+      if (res.success) {
+        this.allCountryList = res.data;
+      }
+    })
+  }
+
+  selectCountry() {
+    if (this.formObj.country_id) {
+      let obj = {
+        country_id: this.formObj.country_id
+      }
+      this.service.stateList(obj).subscribe((res: any) => {
+        if (res.success) {
+          this.allStateList = res.data;
+        }
+      })
+    } else {
+      this.comman.toster('warning', 'Please select country to get state')
+    }
   }
 
 

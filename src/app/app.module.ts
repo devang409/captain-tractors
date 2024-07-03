@@ -28,6 +28,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { AddCatalogueComponent } from './pages/catalogue-and-ordering/add-catalogue/add-catalogue.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/add-to-cart.component';
+import { PurchaseOrderComponent } from './pages/purchase-order/purchase-order.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderDetailComponent } from './pages/catalogue-and-ordering/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/a
     DealerAssignModelComponent,
     SearchPipe,
     AddCatalogueComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    PurchaseOrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/a
     HttpClientModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [
     {

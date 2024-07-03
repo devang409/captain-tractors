@@ -49,38 +49,45 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
                         <th scope="col">Order Number</th>
-                        <th scope="col">Description </th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Order Type</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Creat Date</th>
+                        <th scope="col">Order Status</th>
+                        <!-- <th scope="col">Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of orderList;let i = index">
-                        <th scope="row">{{i +1}}</th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.number}}</td>
-                        <td>{{item.description}}</td>
-                        <td>
-                            <span *ngIf="item.is_active" class="badge bg-success">Active</span>
-                            <span *ngIf="!item.is_active" class="badge bg-danger">Deactivate</span>
-                        </td>
-                        <td>
-                            <div class="action-box">
-                                <button type="button" class="btn btn-success">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    <ng-container *ngFor="let item of getAllOrder | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
+                        <tr (click)="selectedRow(item)" class="poiter">
+                            <th scope="row">{{i +1}}</th>
+                            <td>{{item.order_number}}</td>
+                            <td>{{item.order_type}}</td>
+                            <td>{{item.total_qty}}</td>
+                            <td>{{item.created_at | date:'dd-MMM-yyyy'}}</td>
+                            <td>
+                                {{item.approval_status}}
+                            </td>
+                            <!-- <td>
+                                <div class="action-box">
+                                    <button type="button" class="btn btn-success">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td> -->
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>
         <!-- End Table with hoverable rows -->
+
+        <div class="d-flex justify-content-end">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
 
     </div>
 </div>

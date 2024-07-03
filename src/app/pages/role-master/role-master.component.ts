@@ -64,6 +64,8 @@ export class RoleMasterComponent implements OnInit {
   // To set Active on Load
   checkNavActiveOnLoad() {
     this.navServices.role_Menu.subscribe((menuItems: any) => {
+      console.log("menuItems",menuItems);
+      
       this.menuItems = menuItems;
       this.menuItems.forEach((item: any) => {
         item.is_create = false;
@@ -116,7 +118,8 @@ export class RoleMasterComponent implements OnInit {
           let chaildPermision: any = [];
           permision.children.forEach((item: any) => {
             if (item.is_create || item.is_delete || item.is_edit || item.is_view) {
-              chaildPermision.push(item)
+              chaildPermision.push(item);
+              permision.is_view = true;
             }
           })
           if (chaildPermision.length) {

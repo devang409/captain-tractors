@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class ApiServiceService {
   cartCount: any = 0;
+  notiCount: any = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -150,5 +151,55 @@ export class ApiServiceService {
 
   deleteCart(id: any) {
     return this.http.post(environment.apiUrl + `user_cart_part/${id}/delete`, {});
+  }
+  //=====// E-Catalogue End //=====//
+
+  countryList(data: any) {
+    return this.http.post(environment.apiUrl + 'country/list', data);
+  }
+
+  stateList(data: any) {
+    return this.http.post(environment.apiUrl + 'state/list', data);
+  }
+
+  ChassisNumberList(data: any) {
+    return this.http.post(environment.apiUrl + 'chassis_number/list', data);
+  }
+
+  getAllParts(data: any) {
+    return this.http.post(environment.apiUrl + 'part/all_list', data);
+  }
+
+  //=====// Order Start //=====//
+
+  saveOrder(data: any) {
+    return this.http.post(environment.apiUrl + 'order/store', data);
+  }
+
+  getOrder(data: any) {
+    return this.http.post(environment.apiUrl + 'order/list', data);
+  }
+
+  getOrderDetail(id: any) {
+    return this.http.post(environment.apiUrl + `order/${id}/detail`, {});
+  }
+
+  approve(id: any) {
+    return this.http.post(environment.apiUrl + `order/${id}/approve`, {});
+  }
+
+  reject(id: any) {
+    return this.http.post(environment.apiUrl + `order/${id}/reject`, {});
+  }
+  //=====// Order End //=====//
+
+  //=====// Notifications Start //=====//
+  getNotifications(data: any): Observable<{ items: any[], count: number }> {
+    return this.http.post<any>(environment.apiUrl + 'notification/list', data).pipe(
+      map(response => {
+        this.notiCount = response.data.length;
+        return response;
+      })
+    );
   }
 }

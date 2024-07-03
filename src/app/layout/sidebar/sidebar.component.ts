@@ -40,19 +40,27 @@ export class SidebarComponent implements OnInit {
   }
 
   // Permission wise data filter 
-  filterRoleMenu(permission: any, rolemenu: any) {
-    return rolemenu.filter((menuItem: any) => {
-      const permissionIndex = permission.indexOf(menuItem.title);
-      if (permissionIndex !== -1) {
-        permission.splice(permissionIndex, 1);
-        if (menuItem.children) {
-          menuItem.children = this.filterRoleMenu(permission, menuItem.children);
-        }
-        return true;
-      }
-      return false;
-    });
+  filterRoleMenu(permissions: string[], rolemenu: any[]): any[] {
+    const permissionSet = new Set(permissions);
+  
+    const filterMenu = (menu: any[]): any[] => {
+      return menu
+        .map(menuItem => {
+          if (permissionSet.has(menuItem.title)) {
+            const newMenuItem = { ...menuItem };
+            if (newMenuItem.children) {
+              newMenuItem.children = filterMenu(newMenuItem.children);
+            }
+            return newMenuItem;
+          }
+          return null;
+        })
+        .filter(Boolean); // Remove null entries
+    };
+  
+    return filterMenu(rolemenu);
   }
+  
 
   formatTitle(title: string): string {
     return title.replace(/\s+/g, '-');

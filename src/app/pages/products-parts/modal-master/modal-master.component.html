@@ -1,10 +1,10 @@
 <div class="pagetitle">
-    <h1>Modal Master</h1>
+    <h1>Model Master</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item">Products Parts</li>
-            <li class="breadcrumb-item active">Modal Master</li>
+            <li class="breadcrumb-item active">Model Master</li>
         </ol>
     </nav>
 </div>
@@ -16,12 +16,12 @@
             <form #serchForm="ngForm">
                 <div class="row g-3">
                     <div class="col-md-3">
-                        <label for="name" class="form-label">Modal Name:</label>
+                        <label for="name" class="form-label">Model Name:</label>
                         <input type="text" class="form-control" id="name" [(ngModel)]="serchObj.name" name="name">
                     </div>
 
                     <div class="col-md-3">
-                        <label for="modal_number" class="form-label">Modal Number:</label>
+                        <label for="modal_number" class="form-label">Model Number:</label>
                         <input type="text" class="form-control" id="modal_number" [(ngModel)]="serchObj.number"
                             name="number">
                     </div>
@@ -49,8 +49,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"> Modal Name</th>
-                        <th scope="col"> Modal Number</th>
+                        <th scope="col"> Model Name</th>
+                        <th scope="col"> Model Number</th>
                         <th scope="col">Description </th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -89,13 +89,13 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Model -->
 <div class="modal fade" id="modalPop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="modalPopLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalPopLabel">{{modalType}} Modal</h1>
+                <h1 class="modal-title fs-5" id="modalPopLabel">{{modalType}} Model</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Your template HTML -->
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Modal Name<sup class="text-danger">*</sup>:</label>
+                            <label for="name" class="form-label">Model Name<sup class="text-danger">*</sup>:</label>
                             <input type="text" class="form-control" id="name" [(ngModel)]="formObj.name" name="name"
                                 required #nameCtrl="ngModel">
                             <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || form.submitted)"
@@ -132,7 +132,7 @@
 
                         <div class="col-md-6">
                             <label for="modal_number" class="form-label">
-                                Modal Number
+                                Model Number
                                 <sup class="text-danger">*</sup>:
                             </label>
                             <input type="text" class="form-control" id="modal_number" [(ngModel)]="formObj.number"
@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="modal_image" class="form-label">Modal Image:</label>
+                            <label for="modal_image" class="form-label">Model Image:</label>
                             <input type="file" class="form-control" id="modal_image" (change)="onFileSelected($event)">
                         </div>
 
