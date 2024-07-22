@@ -231,7 +231,7 @@ export class RoleMasterComponent implements OnInit {
   }
 
   getRoleList() {
-    this.service.roleList({}).subscribe((res: any) => {
+    this.service.roleList(this.serchObj).subscribe((res: any) => {
       if (res.success) {
         this.roleList = res.data;
       }
@@ -272,6 +272,9 @@ export class RoleMasterComponent implements OnInit {
     return allmenu;
   }
 
-
+  resetForm(form: any) {
+    form.resetForm();
+    this.getRoleList();
+  }
 
 }

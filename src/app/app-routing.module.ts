@@ -17,6 +17,13 @@ import { AddCatalogueComponent } from './pages/catalogue-and-ordering/add-catalo
 import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/add-to-cart.component';
 import { PurchaseOrderComponent } from './pages/purchase-order/purchase-order.component';
 import { OrderDetailComponent } from './pages/catalogue-and-ordering/order-detail/order-detail.component';
+import { SparePartsBillingReportComponent } from './pages/spare-parts-billing-report/spare-parts-billing-report.component';
+import { BackOrderReportComponent } from './pages/back-order-report/back-order-report.component';
+import { BrandMasterComponent } from './pages/brand-master/brand-master.component';
+import { ICircularComponent } from './pages/i-circular/i-circular.component';
+import { ServiceManualsComponent } from './pages/service-manuals/service-manuals.component';
+import { OwnersManualsComponent } from './pages/owners-manuals/owners-manuals.component';
+import { ServiceSOPComponent } from './pages/service-sop/service-sop.component';
 
 const routes: Routes = [
   {
@@ -31,6 +38,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'user-master', component: UserMasterComponent },
       { path: 'role-master', component: RoleMasterComponent },
+      { path: 'brand-master', component: BrandMasterComponent },
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'products-type-master', component: ProductsTypeMasterComponent },
       { path: 'model-master', component: ModalMasterComponent },
@@ -41,6 +49,13 @@ const routes: Routes = [
       { path: 'add-catalogue', component: AddCatalogueComponent },
       { path: 'add-to-cart', component: AddToCartComponent },
       { path: 'purchase-order', component: PurchaseOrderComponent },
+      { path: 'spare-parts-billing-report', component: SparePartsBillingReportComponent },
+      { path: 'back-order-report', component: BackOrderReportComponent },
+
+      { path: 'i-circular', component: ICircularComponent },
+      { path: 'service-manuals', component: ServiceManualsComponent },
+      { path: 'owners-manuals', component: OwnersManualsComponent },
+      { path: 'service-sop', component: ServiceSOPComponent },
     ],
     canActivate: [AuthGuard]
   },

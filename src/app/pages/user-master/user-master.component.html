@@ -14,45 +14,19 @@
             <h5 class="card-title">Search</h5>
             <form #serchForm="ngForm">
                 <div class="row g-3">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label for="first_name" class="form-label">Name<sup class="text-danger">*</sup>:</label>
                         <input type="text" class="form-control" id="first_name" [(ngModel)]="serchObj.name"
                             name="first_name">
-
                     </div>
-                    <div class="col-md-3">
-                        <label for="inputAddress5" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="inputAddress5" [(ngModel)]="serchObj.phone"
-                            name="phone" #phoneCtrl="ngModel">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputEmail5" class="form-label">Email<sup class="text-danger">*</sup>:</label>
-                        <input type="email" class="form-control" id="inputEmail5" [(ngModel)]="serchObj.email"
-                            name="email">
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="roles" class="form-label">Roles:</label>
-                        <select id="roles" class="form-select" [(ngModel)]="serchObj.role_id" name="role_id"
-                            #rolesCtrl="ngModel">
-                            <ng-container *ngFor="let item of roleList">
-                                <option [value]="item.id">{{item.name}}</option>
-                            </ng-container>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck"
-                                [(ngModel)]="serchObj.is_active" name="is_active" #isActiveCtrl="ngModel">
-                            <label class="form-check-label" for="gridCheck">
-                                Is Active
-                            </label>
+                    <div class="col-md-6">
+                        <div class="serch-box">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="resetForm(serchForm)">Reset</button>
+                            <button type="submit" class="btn btn-primary" (click)="getUerList()">Search</button>
                         </div>
                     </div>
-                </div>
-                <div class="serch-box">
-                    <button type="button" class="btn btn-secondary">Reset</button>
-                    <button type="submit" class="btn btn-primary">Search</button>
+
                 </div>
             </form>
         </div>
@@ -200,10 +174,40 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="brandId" class="form-label">Brand<sup class="text-danger">*</sup>:</label>
+                            <select id="brandId" class="form-select" [(ngModel)]="formObj.braand_id" name="braand_id"
+                                required #brandCtrl="ngModel">
+                                <ng-container *ngFor="let item of brandList">
+                                    <option [value]="item.id">{{item.name}}</option>
+                                </ng-container>
+                            </select>
+                            <div *ngIf="brandCtrl.invalid && (brandCtrl.dirty || brandCtrl.touched || form.submitted)"
+                                class="text-danger invalid-feild">
+                                Brand is required.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="inputregion" class="form-label">Region<sup class="text-danger">*</sup>:</label>
+                            <select id="inputregion" class="form-select" [(ngModel)]="formObj.region_id"
+                                name="region_id" required #regionCtrl="ngModel">
+                                <!-- <ng-container *ngFor="let item of allCountryList"> -->
+                                <option value="Africa">Africa</option>
+                                <option value="Asia">Asia</option>
+                                <option value="Central America">Central America</option>
+                                <!-- </ng-container> -->
+                            </select>
+                            <div *ngIf="regionCtrl.invalid && (regionCtrl.dirty || regionCtrl.touched || form.submitted)"
+                                class="text-danger invalid-feild">
+                                Country is required.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="inputcountry" class="form-label">Country<sup
                                     class="text-danger">*</sup>:</label>
-                            <select id="inputcountry" class="form-select" [(ngModel)]="formObj.country_id" name="country_id"
-                                required #countryCtrl="ngModel" (change)="selectCountry()">
+                            <select id="inputcountry" class="form-select" [(ngModel)]="formObj.country_id"
+                                name="country_id" required #countryCtrl="ngModel" (change)="selectCountry()">
                                 <ng-container *ngFor="let item of allCountryList">
                                     <option [value]="item.id">{{item.name}}</option>
                                 </ng-container>

@@ -31,6 +31,13 @@ import { AddToCartComponent } from './pages/catalogue-and-ordering/add-to-cart/a
 import { PurchaseOrderComponent } from './pages/purchase-order/purchase-order.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderDetailComponent } from './pages/catalogue-and-ordering/order-detail/order-detail.component';
+import { SparePartsBillingReportComponent } from './pages/spare-parts-billing-report/spare-parts-billing-report.component';
+import { BackOrderReportComponent } from './pages/back-order-report/back-order-report.component';
+import { BrandMasterComponent } from './pages/brand-master/brand-master.component';
+import { ICircularComponent } from './pages/i-circular/i-circular.component';
+import { ServiceManualsComponent } from './pages/service-manuals/service-manuals.component';
+import { OwnersManualsComponent } from './pages/owners-manuals/owners-manuals.component';
+import { ServiceSOPComponent } from './pages/service-sop/service-sop.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +61,14 @@ import { OrderDetailComponent } from './pages/catalogue-and-ordering/order-detai
     AddCatalogueComponent,
     AddToCartComponent,
     PurchaseOrderComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    SparePartsBillingReportComponent,
+    BackOrderReportComponent,
+    BrandMasterComponent,
+    ICircularComponent,
+    ServiceManualsComponent,
+    OwnersManualsComponent,
+    ServiceSOPComponent
   ],
   imports: [
     BrowserModule,

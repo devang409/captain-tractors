@@ -52,4 +52,31 @@ export class AddToCartComponent implements OnInit {
       }
     })
   }
+
+  //========// Update Cart Item //========//
+  updateCart() {
+    let obj: any = {
+      "user_id": this.userData.id,
+      "parts": []
+    }
+    this.cartList.forEach((item: any) => {
+      obj.parts.push({
+        "part_id": item.part_id,
+        "qty": item.qty,
+      })
+    });
+    if (obj.parts && obj.parts.length) {
+      this.service.addToCart(obj).subscribe((res: any) => {
+        if (res.success) {
+          this.comman.toster('success', res.message);
+          this.getCartList();
+        } else {
+          this.comman.toster('warning', res.message)
+        }
+      })
+    } else {
+      this.comman.toster('warning', "Plese select quantities and move items to a cart")
+    }
+
+  }
 }

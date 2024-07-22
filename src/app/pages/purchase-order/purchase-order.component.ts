@@ -182,7 +182,7 @@ export class PurchaseOrderComponent implements OnInit {
       user_id: this.userData.id
     }
     this.service.cartList(obj).subscribe((res: any) => {
-      if (res.success) {
+      if (res.success && res.data.length) {
         console.log("res", res);
         this.partList = []
         for (let i in res.data) {
@@ -193,7 +193,6 @@ export class PurchaseOrderComponent implements OnInit {
             qty: res.data[i].qty
           })
         }
-
       }
     })
   }
@@ -207,6 +206,19 @@ export class PurchaseOrderComponent implements OnInit {
       this.partList[ind].description = '';
       this.partList[ind].moq = '';
     }
+  }
+
+  demoImport() {
+    this.service.demoEXCL().subscribe((res: any) => {
+      if (res.success) {
+        const link = document.createElement('a');
+        link.href = res.data;
+        link.target = '_blank';
+        link.download = 'sample_excel';
+        link.click();
+      }
+      console.log("res", res);
+    })
   }
 
 }

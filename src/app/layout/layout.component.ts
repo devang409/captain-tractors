@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../services/api-service.service';
 import { CommanService } from '../services/comman.service';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-layout',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class LayoutComponent implements OnInit {
   getAllNotification: any;
   currentDate: any;
+  userData: any;
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
@@ -21,9 +23,25 @@ export class LayoutComponent implements OnInit {
     console.log("this.currentDate", this.currentDate);
 
     this.getCatalogue();
+    this.userData = JSON.parse(localStorage.getItem('profile') || '')
+    let obj = {
+      user_id: this.userData.id
+    }
+    this.getCartList(obj)
   }
 
 
+  //========// Get All Cart List //========//
+  getCartList(obj: any) {
+    this.service.cartList(obj).subscribe((res: any) => {
+      if (res.success) {
+        console.log(res);
+      }
+    })
+  }
+
+
+  //========// Get All Notifications List //========//
   getCatalogue() {
     this.service.getNotifications({}).subscribe((res: any) => {
       if (res.success) {
@@ -86,6 +104,18 @@ export class LayoutComponent implements OnInit {
 
     return this.formatDate(date);
   };
+
+  redirectTo(item: any) {
+    this.service.readNotification({ notificationn_id: item.id }).subscribe((res: any) => {
+      if (res.success) {
+        this.getCatalogue();
+        this.router.navigate(['/order-detail', item.uuid], {
+          queryParams: { type: 'Order' }
+        });
+        $('#theme-settings-offcanvas').offcanvas('hide');
+      }
+    });
+  }
 
 
 }

@@ -21,8 +21,8 @@
                     </div>
 
                     <div class="serch-box col-md-6">
-                        <button type="button" class="btn btn-secondary">Reset</button>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn btn-secondary" (click)="resetForm(serchForm)">Reset</button>
+                        <button type="submit" class="btn btn-primary" (click)="getproductsTypeMaster()">Search</button>
                     </div>
                 </div>
             </form>
@@ -108,7 +108,7 @@
                         <div class="col-12">
                             <label for="inputdescription2" class="form-label">Description:</label>
                             <textarea type="text" class="form-control" id="inputdescription2"
-                                [(ngModel)]="formObj.description" name="description" required></textarea>
+                                [(ngModel)]="formObj.description" name="description"></textarea>
                         </div>
 
                         <div class="col-12">

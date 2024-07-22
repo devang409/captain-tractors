@@ -30,10 +30,10 @@
                                 <tbody>
                                     <tr *ngFor="let item of cartList">
                                         <td>
-                                            <img [src]="item.part.image ? 'http://192.168.0.115/captain-tractor/public/part/images/' + item.part.image : 'https://coderthemes.com/hyper_2/saas/assets/images/products/product-1.jpg'"
+                                            <img [src]="item.part.image ? 'http://192.168.0.107/captain-tractor/public/part/images/' + item.part.image : 'assets/img/No_image_available.png'"
                                                 alt="contact-img" title="parts-img" class="rounded me-3" height="64">
                                             <p class="m-0 d-inline-block align-middle font-16">
-                                                <a href="#" class="text-body">{{item.part.name}}</a>
+                                                <a class="text-body">{{item.part.name}}</a>
                                                 <br>
                                                 <small class="me-2"><b>Part No:</b> {{item.part.part_no}} </small>
                                                 <small><b>Model:</b> {{item.part.model.name}}
@@ -78,8 +78,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end">
-                                    <a href="#" class="btn btn-danger">
-                                        <i class="bi bi-cart-plus me-1"></i> Checkout
+                                    <a (click)="updateCart()" class="btn btn-primary">
+                                        <i class="bi bi-cart-plus me-1"></i> Update
                                     </a>
                                 </div>
                             </div>
@@ -120,15 +120,6 @@
                             <!-- end table-responsive -->
                         </div>
 
-                        <div class="alert alert-warning mt-3" role="alert">
-                            Use coupon code <strong>Captain Tractors</strong> and get discount !
-                        </div>
-
-                        <div class="input-group mt-3">
-                            <input type="text" class="form-control" placeholder="Coupon code"
-                                aria-label="Recipient&#39;s username">
-                            <button class="input-group-text btn-light" type="button">Apply</button>
-                        </div>
                     </div>
                 </div>
             </div>

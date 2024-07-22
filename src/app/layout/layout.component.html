@@ -21,7 +21,8 @@
             <ng-container *ngIf="isToday(item.created_at); else oldNotification">
                 <h5 class="text-muted font-14 fw-normal mt-2">{{item.dateType}}</h5>
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
+                <a (click)="redirectTo(item)" class="dropdown-item p-0 notify-item card  shadow-none mb-2"
+                    [ngClass]="{'unread-noti': item.is_read == 1, 'read-noti': item.is_read != 1}">
                     <div class="card-body">
                         <a class="float-end noti-close-btn text-muted"><i class="bi bi-x"></i></a>
                         <div class="d-flex align-items-center">
@@ -43,7 +44,8 @@
             <ng-template #oldNotification>
                 <h5 class="text-muted font-14 fw-normal mt-3">{{item.dateType}}</h5>
 
-                <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
+                <a (click)="redirectTo(item)" class="dropdown-item p-0 notify-item card shadow-none mb-2"
+                    [ngClass]="{'unread-noti': item.is_read == 1, 'read-noti': item.is_read != 1}">
                     <div class="card-body">
                         <a class="float-end noti-close-btn text-muted"><i class="bi bi-x"></i></a>
                         <div class="d-flex align-items-center">

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.0.107/captain-tractor/public/api/'
+  // apiUrl: 'http://192.168.0.107/captain-tractor/public/api/' //local
+  apiUrl: 'https://techsolutionslab.com/captain_tractor_backend/api/' //live
 };
 
 /*

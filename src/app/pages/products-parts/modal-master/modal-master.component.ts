@@ -101,7 +101,7 @@ export class ModalMasterComponent implements OnInit {
 
   //========// Get All Modal //========//
   getModalList() {
-    this.service.ModalList({}).subscribe((res: any) => {
+    this.service.ModalList(this.serchObj).subscribe((res: any) => {
       if (res.success) {
         this.modalList = res.data
       }
@@ -138,6 +138,11 @@ export class ModalMasterComponent implements OnInit {
         this.productTypeList = res.data
       }
     })
+  }
+
+  resetForm(form: any) {
+    form.resetForm();
+    this.getModalList();
   }
 
 }

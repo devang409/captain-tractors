@@ -101,7 +101,7 @@ export class AssemblyMasterComponent implements OnInit {
 
   //========// Get All assembly //========//
   getassemblyList() {
-    this.service.AssemblyList({}).subscribe((res: any) => {
+    this.service.AssemblyList(this.serchObj).subscribe((res: any) => {
       if (res.success) {
         this.assemblyList = res.data
       }
@@ -137,6 +137,11 @@ export class AssemblyMasterComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+  }
+
+  resetForm(form: any) {
+    form.resetForm();
+    this.getassemblyList()
   }
 
 }

@@ -12,13 +12,7 @@ declare var $: any;
 export class UserMasterComponent implements OnInit {
   userType: any;
   formObj: any = {};
-  serchObj: any = {
-    name: '',
-    phone: '',
-    email: '',
-    role_id: '',
-    is_active: '',
-  };
+  serchObj: any = {}
   userList: any = [];
   userId: any;
   userData: any;
@@ -26,6 +20,7 @@ export class UserMasterComponent implements OnInit {
   p: number = 1;
   allCountryList: any;
   allStateList: any;
+  brandList: any = [];
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
@@ -36,9 +31,22 @@ export class UserMasterComponent implements OnInit {
     this.getUerList();
     this.getRoleList();
     this.getCountryList();
+    this.getBrandList();
+  }
+
+
+  // get Brand List
+  getBrandList() {
+    this.service.brandList(this.serchObj).subscribe((res: any) => {
+      if (res.success) {
+        this.brandList = res.data;
+      }
+    })
   }
 
   openPop(type: any, item: any) {
+    console.log("item", item);
+
     if (type == 'Edit') {
       this.userId = item.id;
       this.formObj.first_name = item.first_name;
@@ -47,8 +55,10 @@ export class UserMasterComponent implements OnInit {
       this.formObj.email = item.email;
       this.formObj.password = item.password || '';
       this.formObj.address = item.address;
+      this.formObj.country_id = item.country_id;
+      this.selectCountry()
+      this.formObj.state_id = item.state_id;
       this.formObj.city = item.city;
-      this.formObj.state = item.state;
       this.formObj.role_id = item.role_id;
       this.formObj.is_active = item.is_active;
     } else {
@@ -99,7 +109,7 @@ export class UserMasterComponent implements OnInit {
   }
 
   getUerList() {
-    this.service.userList({}).subscribe((res: any) => {
+    this.service.userList(this.serchObj).subscribe((res: any) => {
       if (res.success) {
         let data = [];
         for (let i in res.data) {
@@ -157,7 +167,12 @@ export class UserMasterComponent implements OnInit {
       }
     }, (err: any) => {
       console.log(err);
-      this.comman.toster('error', 'ops! something went wrong please try again later')
+      this.comman.toster('error', 'Ops! something went wrong please try again later')
     })
+  }
+
+  resetForm(form: any) {
+    form.resetForm();
+    this.getUerList();
   }
 }

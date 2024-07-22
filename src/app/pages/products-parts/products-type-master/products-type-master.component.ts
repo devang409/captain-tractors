@@ -18,7 +18,7 @@ export class ProductsTypeMasterComponent implements OnInit {
   productTypeId: any;
   selectedFile: File | null = null;
   p: number = 1;
-    constructor(
+  constructor(
     public service: ApiServiceService,
     public comman: CommanService,
     public router: Router
@@ -96,30 +96,36 @@ export class ProductsTypeMasterComponent implements OnInit {
 
   //========// Get All Products Type //========//
   getproductsTypeMaster() {
-    this.service.ProductTypeList({}).subscribe((res: any) => {
+    this.service.ProductTypeList(this.serchObj).subscribe((res: any) => {
       if (res.success) {
         this.productTypeList = res.data
       }
     })
   }
 
-    //========// Delete Modal code//========//
-    deleteProductType(item: any) {
-      let obj = {
-        id: item.id
-      }
-      this.service.deleteProductType(obj).subscribe((res: any) => {
-        if (res.success) {
-          this.comman.toster('success', res.message);
-          this.getproductsTypeMaster();
-        } else {
-          this.comman.toster('warning', res.message)
-        }
-      }, (err: any) => {
-        console.log(err);
-        this.comman.toster('error', 'ops! something went wrong please try again later')
-      })
+  //========// Delete Modal code//========//
+  deleteProductType(item: any) {
+    let obj = {
+      id: item.id
     }
-  
+    this.service.deleteProductType(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.comman.toster('success', res.message);
+        this.getproductsTypeMaster();
+      } else {
+        this.comman.toster('warning', res.message)
+      }
+    }, (err: any) => {
+      console.log(err);
+      this.comman.toster('error', 'ops! something went wrong please try again later')
+    })
+  }
+
+
+  resetForm(form: any) {
+    form.resetForm();
+    this.getproductsTypeMaster();
+  }
+
 
 }

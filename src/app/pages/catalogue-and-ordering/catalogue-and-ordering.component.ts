@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { CommanService } from 'src/app/services/comman.service';
+import * as FileSaver from 'file-saver';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-catalogue-and-ordering',
@@ -17,15 +19,15 @@ export class CatalogueAndOrderingComponent implements OnInit {
   constructor(
     public service: ApiServiceService,
     public comman: CommanService,
-    public router: Router
+    public router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    let obj: any = {}
     if (this.userData?.role_name == 'Dealer') {
-      obj.dealer_id = this.userData.id;
+      this.serchObj.dealer_id = this.userData.id;
     }
-    this.getCatalogue(obj);
+    this.getCatalogue(this.serchObj);
   }
 
 
@@ -41,6 +43,33 @@ export class CatalogueAndOrderingComponent implements OnInit {
 
   selectedRow(item: any) {
     console.log(item);
-    this.router.navigate(['/order-detail', item.id]);
+    this.router.navigate(['/order-detail', item.id], {
+      queryParams: { type: 'Order' }
+    });
+  }
+
+  // downloadPdf(url: string) {
+  //   this.http.get(url, { responseType: 'blob' }).subscribe((response: Blob) => {
+  //     const blob = new Blob([response], { type: 'application/pdf' });
+  //     FileSaver.saveAs(blob, 'downloadedFile.pdf');
+  //   });
+  // }
+
+  downloadPdf(poPdf: string) {
+    if (poPdf && poPdf != '') {
+      console.log('Downloading PDF:', poPdf);
+      const link = document.createElement('a');
+      link.href = poPdf;
+      link.target = '_blank';
+      link.download = 'purchase_order.pdf';
+      link.click();
+    } else {
+      this.comman.toster('warning', "PDF url not found")
+    }
+  }
+
+  resetForm(form: any) {
+    form.resetForm();
+    this.getCatalogue({});
   }
 }

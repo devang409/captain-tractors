@@ -12,7 +12,7 @@ declare var $: any;
 export class DealerAssignModelComponent implements OnInit {
   formObj: any = {};
   serchObj: any = {};
-  dealerList: any;
+  dealerList: any = [];
   modaldataList: any;
   searchText: any;
   isChecked: any;

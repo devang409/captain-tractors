@@ -32,6 +32,13 @@ export class NavserviceService {
       children: []
     },
     {
+      path: '/brand-master',
+      title: 'Brand Master',
+      type: 'link',
+      icon: 'bi bi-person-gear',
+      children: []
+    },
+    {
       path: '',
       title: 'Products Parts',
       type: 'link',
@@ -65,6 +72,34 @@ export class NavserviceService {
       children: []
     },
     {
+      path: '/i-circular',
+      title: 'I-Circular',
+      type: 'link',
+      icon: 'bi bi-bullseye',
+      children: []
+    },
+    {
+      path: '/service-manuals',
+      title: 'Service Manuals',
+      type: 'link',
+      icon: 'bi bi-ui-checks-grid',
+      children: []
+    },
+    {
+      path: '/owners-manuals',
+      title: 'Owners Manuals',
+      type: 'link',
+      icon: 'bi bi-person-lines-fill',
+      children: []
+    },
+    {
+      path: '/service-sop',
+      title: 'Service SOP',
+      type: 'link',
+      icon: 'bi bi-person-lines-fill',
+      children: []
+    },
+    {
       path: '/dealer-assign-model',
       title: 'Dealer Assign Model',
       type: 'link',
@@ -78,7 +113,13 @@ export class NavserviceService {
       icon: 'bi bi-menu-button-wide',
       children: [
         {
-          path: '/products-type-master',
+          path: '/back-order-report',
+          title: 'Back Order Report',
+          type: 'link',
+          icon: 'bi bi-circle',
+        },
+        {
+          path: '/spare-parts-billing-report',
           title: 'Spare Parts Billing Report',
           type: 'link',
           icon: 'bi bi-circle',
